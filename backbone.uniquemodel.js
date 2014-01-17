@@ -3,7 +3,7 @@
 (function (window) {
   "use strict";
 
-  var globalCache = {};
+  window.globalCache = {};
 
   /**
    * UniqueModel wrapper converts regular Backbone models into
@@ -82,6 +82,14 @@
     }
 
     var modelConstructor = function (attrs, options) {
+      var id, res;
+      if (attrs && attrs._res) {
+        res = attrs._res.split('@')[0];
+        id = res.split('/').reverse()[0].split('.')[1];
+        if (id) {
+          attrs.id = id;
+        }
+      }
       return self.get(attrs, options);
     };
     _.extend(modelConstructor, Backbone.Events);
