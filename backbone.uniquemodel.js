@@ -3,8 +3,8 @@
 (function (window) {
   "use strict";
 
-  window.globalCache = {};
-
+  var globalCache;
+  
   /**
    * UniqueModel wrapper converts regular Backbone models into
    * unique ones.
@@ -29,6 +29,7 @@
     return cache.modelConstructor;
   }
 
+  UniqueModel.globalCache = globalCache = {};
   UniqueModel.STORAGE_DEFAULT_ADAPTER = 'memory';
   UniqueModel.STORAGE_KEY_DELIMETER = '.';
   UniqueModel.STORAGE_NAMESPACE = 'UniqueModel';
